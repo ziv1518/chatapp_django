@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{%load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>会員登録</title>
+        <link rel="stylesheet" href="{% static 'chat/css/signin.css' %}">
+    </head>
+    <header>会員登録</header>
+    <body>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="label">
+                Username: 
+            </div>
+            <div class="box">
+                {{uform.username}}
+            </div>
+
+            <div class="label">
+                Email:
+            </div>
+            <div class="box">
+                {{uform.email}}
+            </div>
+
+            <div class="label">
+                Password: 
+            </div>
+            <div class="box">
+                {{uform.password1}}
+            </div>
+
+            <div class="label">
+                Password confirm:
+            </div>
+            <div class="box">
+                {{uform.password2}}
+            </div>
+            
+            <div class="label">
+                Image: 
+            </div>
+            <div class="box">
+                {{pform.profile_image}}
+            </div>
+            <input type="submit" name="Create User">
+        </form>
+    </body>
+</html>
