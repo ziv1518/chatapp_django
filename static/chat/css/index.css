@@ -1,0 +1,27 @@
+.but {
+    border: gray 1px;
+    display: block;
+    width: 100px;
+    padding: 8px 24px;
+    border-style:solid;
+    font-size:large;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align:center;
+    color: black;
+    font-weight: bold;
+}
+#login {
+    margin: 37vh auto 8vh;
+}
+#signin {
+    margin: 8vh auto 47vh;
+}
+body {
+    min-height: 100vh;
+    width:64vh;
+    margin: 100px auto;
+    border: 5px dashed black;
+    background: border-box;
+
+}
