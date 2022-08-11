@@ -14,37 +14,41 @@
                 Username: 
             </div>
             <div class="box">
-                {{uform.username}}
+                {{form1.username}}
             </div>
 
             <div class="label">
                 Email:
             </div>
             <div class="box">
-                {{uform.email}}
+                {{form1.email}}
             </div>
 
             <div class="label">
                 Password: 
             </div>
             <div class="box">
-                {{uform.password1}}
+                {{form1.password1}}
             </div>
 
             <div class="label">
                 Password confirm:
             </div>
             <div class="box">
-                {{uform.password2}}
+                {{form1.password2}}
             </div>
+            <input type="submit" name="Create User">
             
+            {% if form2 %}
             <div class="label">
                 Image: 
             </div>
             <div class="box">
-                {{pform.profile_image}}
+                {{form2}}
             </div>
-            <input type="submit" name="Create User">
+            <input type="submit" name="Customize">
+            {% endif %}
+            
         </form>
     </body>
 </html>
