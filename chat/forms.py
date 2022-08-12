@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Customer
 
-
+# User registration forms --------------------------------------------------------------
 class signinform(UserCreationForm):
     class Meta:
         model = User
@@ -13,4 +13,5 @@ class signinform(UserCreationForm):
 class customerform(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['name','email','phone','profile_image']
+        fields = ['name','phone','profile_image']
+#---------------------------------------------------------------------------------------

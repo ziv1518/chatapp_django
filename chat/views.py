@@ -12,6 +12,12 @@ def index(request):
     return render(request,'chat/index.html')
 def login(request):
     return render(request,'chat/login.html')
+#-------------------------------------------------------------------------------------------------
+'''signin() and profile() serves as a set for user registration. signin create a user model which 
+only takes the username, email, and passwoed. After the user is created, it will auto-login and 
+pass the user to create a customer model, which serves as a customer profile that take the
+display name, phone, and profile image.
+'''
 def signin(request):
     form1 = signinform()
     context = {'form1':form1}
@@ -44,6 +50,6 @@ def profile(request,pk):
             return redirect('/friends/')
 
     return render(request,'chat/profile.html',context)
-
+#-------------------------------------------------------------------------------------------------
 def friends(request):
     return render(request,'chat/friends.html')
