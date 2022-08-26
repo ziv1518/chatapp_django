@@ -1,17 +1,32 @@
 from django.shortcuts import render, redirect
 from .forms import signinform,customerform
-from django.contrib.auth import login as auth_login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import Customer
 from django.contrib.auth.models import User
 from django.contrib import messages
 import os
+import time
 
 # Create your views here.
 def index(request):
     return render(request,'chat/index.html')
 def login(request):
-    return render(request,'chat/login.html')
+    form = AuthenticationForm()
+    context = {'form':form}
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            return redirect('/friends/')
+        else:
+            messages.error(request,'username or password not correct')
+            time.sleep(1)
+            return redirect('/login/')
+    return render(request,'chat/login.html',context)
 #-------------------------------------------------------------------------------------------------
 '''signin() and profile() serves as a set for user registration. signin create a user model which 
 only takes the username, email, and passwoed. After the user is created, it will auto-login and 
@@ -36,6 +51,8 @@ def signin(request):
             messages.info(request, "Thanks for registering. You are now logged in.")
             auth_login(request, newuser)
             return redirect(os.path.join('profile/',str(newcustomer.id)))
+        else:
+            messages.error(request,'There is something wrong with your information.')
     return render(request,'chat/signin.html',context)
 
 @login_required

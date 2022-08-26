@@ -3,7 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User, AbstractUser
 from django.forms import CharField, ImageField
 
-# Create your models here.
+'''Customer model serves as a customer profile that takes a user and allows user 
+to customize their profile in the app'''
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
