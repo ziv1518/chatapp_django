@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import signinform
 from django.contrib.auth import login as auth_login
-from django.contrib.auth.models import User
 from django.contrib import messages
+from django.views import generic
 
 
 # Create your views here.
@@ -16,20 +16,14 @@ only takes the username, email, and passwoed. After the user is created, it will
 pass the user to create a customer model, which serves as a customer profile that take the
 display name, phone, and profile image.
 '''
-def signin(request):
-    form1 = signinform()
-    context = {'form1':form1}
+class signinview(generic.FormView):
+    template_name = 'main/signin.html'
+    form_class = signinform 
+    success_url = '/friends'
 
-    if request.method == 'POST':
-        form1 = signinform(request.POST)
-        
-        if form1.is_valid():
-            newuser = form1.save()
-            messages.info(request, "Thanks for registering. You are now logged in.")
-            auth_login(request, newuser)
-            return redirect('/friends')
-    return render(request,'main/signin.html',context)
-
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 #-------------------------------------------------------------------------------------------------
 def friends(request):
     return render(request,'main/friends.html')

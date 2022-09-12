@@ -1,4 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>Login</head>
-</html>
+{% extends 'main/base.html' %}
+{% block header %}
+ログイン
+{% endblock %}
+
+{% block content %}
+<form method="POST">{% csrf_token %}
+    <div class="set">
+        <div class="label">
+        Username:
+        </div>
+        <div class="box">
+            {{form.username}}
+        </div>
+        <div class="label">
+        Password:
+        </div>
+        <div class="box">
+            {{form.password}}
+        </div>
+    </div>
+    {% include 'chat/message.html' %}
+    <button class='but' type="submit" name="Create User">ログイン</button>
+</form>
+{% endblock %}

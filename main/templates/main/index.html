@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-{%load static %}
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Chatapp</title>
-        <link rel="stylesheet" href="{% static 'chat/css/index.css' %}">
-    </head>
-    <body>
-        <a class='but' id="login" href="login">ログイン</a>
-        <a class='but' id="signin" href="signin">会員登録</a>
-    </body>
-</html>
+{% extends 'main/base.html' %}
+{% block content %}
+    <a class='but' id="login" href="login">ログイン</a>
+    <a class='but' id="signin" href="signin">会員登録</a>
+{% endblock %}
