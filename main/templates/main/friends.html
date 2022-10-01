@@ -2,3 +2,74 @@
 {% block header %}
     Friends
 {% endblock %}
+
+{% block content %}
+    <style>
+    .flex-container {
+      display: flex;
+      background-color: rgb(230, 226, 226);
+      border: black solid;
+    }
+    
+    .avatar-container {
+      width: 100px;
+      margin: 10px;
+      line-height: 75px;
+      font-size: 30px;
+    }
+    .avatar {
+        vertical-align: middle;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+    .content-container{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .username {
+        width: 500px;
+        height: 30px;
+        font-size: 28px;
+        align-self: auto;
+        padding: 10px;
+    }
+
+    .message_preview {
+        color:grey;
+        align-self: auto;
+        padding:15px;
+        font-size: large;
+    }
+    </style>
+
+    {% for friend in friend_list %}
+        {% if request.user == friend.user1 %}
+        <div class="flex-container">
+            <div class="avatar-container"><img src="{{ friend.user2.profile_image.url }}" alt="Avatar" class="avatar"/></div>
+            <div class="content-container">
+            <div class="username">{{ friend.user2.username }}</div>
+            <div class="message_preview">
+                {% if friend.messages %}
+                {{  friend.get_latest_message.content|truncatechars:50  }}
+                {% endif %}
+            </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="flex-container" href="#">
+            <div class="avatar-container"><img src="{{ friend.user1.profile_image.url }}" alt="Avatar" class="avatar"/></div>
+            <div class="content-container">
+            <div class="username">{{ friend.user1.username }}</div>
+            <div class="message_preview">
+                {% if friend.messages %}
+                {{  friend.get_latest_message.content|truncatechars:50 }}
+                {% endif %}
+            </div>
+            </div>
+        </div>
+
+        {% endif %}
+        {% endfor %}
+{% endblock %}
